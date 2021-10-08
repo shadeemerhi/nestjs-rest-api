@@ -18,14 +18,13 @@ export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
   @Get()
-  findAll(): Item[] {
+  async findAll(): Promise<Item[]> {
     return this.itemsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id): Item {
-    const foundItem = this.itemsService.findOne(id);
-    if (foundItem) return foundItem;
+  async findOne(@Param('id') id): Promise<Item> {
+    return this.itemsService.findOne(id);
   }
 
   @Post()
